@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_DB: market_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+volumes:
+  pgdata:
