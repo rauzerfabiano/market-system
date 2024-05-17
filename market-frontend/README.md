@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Market Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This project is a Market Management System designed to handle product and product type registrations along with managing sales. It utilizes a React frontend and a Node.js backend with a PostgreSQL database.
 
-## Available Scripts
+## Features
+- Product registration
+- Product type management
+- Sales tracking
 
-In the project directory, you can run:
+## Prerequisites
+Before you begin, ensure you have met the following requirements:
+- Docker and Docker Compose installed for running PostgreSQL
+- PHP installed on your local machine
+- Node.js and npm installed for handling the frontend
+- Any local web server software like XAMPP, WAMP for PHP or direct use of PHP's built-in server
 
-### `npm start`
+## Technology Stack
+- **Frontend**: React, Bootstrap for styling
+- **Backend**: PHP
+- **Database**: PostgreSQL
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Clone the repository
+Clone this repository to your local machine using the following command:
+```bash
+git clone https://github.com/yourusername/market-system.git
+cd market-system
+```
 
-### `npm test`
+## Enviroment Setup
+Copy the example environment file and modify it according to your needs:
+```bash
+cp .env.example .env
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Start the Database
+Navigate to the root directory of the project and run
+```bash 
+docker-compose up -d
+```
+This command starts the PostgreSQL database using Docker. The database is pre-populated with the necessary tables using the scripts in the docker/postgres directory.
 
-### `npm run build`
+## Install Node Dependencies
+``` bash 
+cd market-frontend
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Start the Backend Server
+Navigate to the backend directory and start the server:
+```bash
+cd ..
+php -S localhost:8080
+``` 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Start the Frontend Application
+Open a new terminal, navigate to the frontend directory, and start the React application:
+```bash
+cd market-frontend
+npm start
+```
+## Usage
+Once all services are started, you can access the application by navigating to http://localhost:3000 in your web browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributing
+Contributions to this project are welcome. Please ensure to update tests as appropriate.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
