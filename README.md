@@ -32,13 +32,15 @@ cd market-system
 ## Enviroment Setup
 Copy the example environment file and modify it according to your needs:
 ```bash
+cd market-api
 cp .env.example .env
 ```
 
 ## Start the Database
 Navigate to the root directory of the project and run
-```bash 
-docker-compose up -d
+```bash
+cd docker
+docker-compose up --build
 ```
 This command starts the PostgreSQL database using Docker. The database is pre-populated with the necessary tables using the scripts in the docker/postgres directory.
 
