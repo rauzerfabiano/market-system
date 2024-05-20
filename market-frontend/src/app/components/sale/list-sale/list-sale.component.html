@@ -1,0 +1,80 @@
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmação de Exclusão</h4>
+  </div>
+  <div class="modal-body">
+    Tem certeza que deseja excluir a venda "{{ productToDelete?.id }}" com valor "{{ productToDelete?.total_price }}"?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="confirmDeleteAction()">Confirmar</button>
+  </div>
+</ng-template>
+
+<!-- Modal de Detalhes da Venda -->
+<ng-template #detailsModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Detalhes da Venda</h4>
+  </div>
+  <div class="modal-body">
+    <p><strong>ID:</strong> {{ saleDetails.id }}</p>
+    <p><strong>Total:</strong> {{ saleDetails.total_price }}</p>
+    <p><strong>Impostos:</strong> {{ saleDetails.total_tax }}</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID do Item</th>
+          <th>Nome</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Total do Item</th>
+          <th>Imposto do Item</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of saleDetails.items">
+          <td>{{ item.id }}</td>
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.total_item }}</td>
+          <td>{{ item.total_tax }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+
+
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-4">Lista de Vendas</h1>
+    <!-- Botão de adicionar -->
+    <button class="btn btn-success mb-4" (click)="addSale()">Adicionar uma venda</button>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Impostos</th>
+          <th>Valor Totas</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sale of sales">
+          <td>{{ sale.id }}</td>
+          <td>{{ sale.total_price }}</td>
+          <td>{{ sale.total_tax }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteSale(sale)">Apagar</button>
+            <button class="btn btn-info" (click)="openDetailsModal(sale)">Detalhes</button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

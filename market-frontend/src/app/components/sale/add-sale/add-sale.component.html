@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <form (submit)="addProductToCart()" class="needs-validation" novalidate>
+        <div class="form-group">
+          <label for="product">Selecione o Produto</label>
+          <select class="form-control" id="product" [(ngModel)]="item.product_id" name="product" required>
+            <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantidade</label>
+          <input type="number" class="form-control" id="quantity" [(ngModel)]="item.quantity" name="quantity" min="0" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="carrinho.length > 0" class="mt-4">
+        <h2>Produtos no Carrinho</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of carrinho; let i = index">
+              <td>{{ item.name }}</td>
+              <td>{{ item.price }}</td>
+              <td>{{ item.quantity }}</td>
+              <td><button class="btn btn-danger btn-sm" (click)="removeProductFromCart(i)">Remover</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="carrinho.length > 0" class="mt-4">
+        <h2>Total e Impostos</h2>
+        <p>Total: {{ total }}</p>
+        <p>Impostos: {{ imposto }}</p>
+        <button class="btn btn-success" (click)="registrarVenda()">Registrar Venda</button>
+      </div>
+    </div>
+  </div>
+</div>

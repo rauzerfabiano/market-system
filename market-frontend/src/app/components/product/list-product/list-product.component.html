@@ -1,0 +1,47 @@
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmação de Exclusão</h4>
+  </div>
+  <div class="modal-body">
+    Tem certeza que deseja excluir o produto "{{ productToDelete?.name }}" com preço "{{ productToDelete?.price }}"?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="confirmDeleteAction()">Confirmar</button>
+  </div>
+</ng-template>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-4">Lista de Produto</h1>
+    <p class="lead">Use o campo de pesquisa abaixo para encontrar um produto específicos.</p>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Pesquisar" class="form-control mb-4" (input)="filterProducts()">
+
+    <!-- Botão de adicionar -->
+    <button class="btn btn-success mb-4" (click)="addProduct()">Adicionar Produto</button>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Preço</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of filteredProducts">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.product_type.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>
+            <button class="btn btn-primary mr-2" (click)="editProduct(product)">Editar</button>
+            <button class="btn btn-danger" (click)="deleteProduct(product)">Apagar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

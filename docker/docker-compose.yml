@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_DB: market_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5452:5432"
+  market-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '9090:9090'
+    volumes:
+      - '../market-api/:/var/www/html/market-api'
+    depends_on:
+      - db
+    networks:
+      - default
+  market-frontend:
+    image: node:18.19.0
+    volumes:
+      - '../market-frontend/:/app'
+    ports:
+      - "8080:8080"
+    networks:
+      - default
+    depends_on:
+      - market-api
+    command: >
+      sh -c "cd /app && npm install -g @angular/cli && npm install && ng serve --host 0.0.0.0 --port 8080"
+volumes:
+  pgdata:
+
